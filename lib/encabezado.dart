@@ -1,35 +1,43 @@
 import 'package:flutter/material.dart';
 
+import 'busqueda.dart';
+import 'menu.dart';  
+
 class Encabezado extends StatelessWidget implements PreferredSizeWidget {
+  const Encabezado({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Título alineado a la izquierda
-          Align(
+          const Align(
             alignment: Alignment.centerLeft,
             child: Text(
               'Micreros',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          // Contenedor para los íconos de búsqueda y menú
           Row(
             children: [
-              // Ícono de búsqueda
               IconButton(
-                icon: Icon(Icons.search),
+                icon: const Icon(Icons.search),
                 onPressed: () {
-                  print('Buscar presionado');
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(builder: (context) => Busqueda()),
+
+                  ); 
                 },
               ),
-              // Ícono de menú (hamburguesa)
               IconButton(
-                icon: Icon(Icons.menu),
+                icon: const Icon(Icons.menu),
                 onPressed: () {
-                  print('Configuraciones presionadas');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Menu()),
+                  );
                 },
               ),
             ],
@@ -41,5 +49,5 @@ class Encabezado extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

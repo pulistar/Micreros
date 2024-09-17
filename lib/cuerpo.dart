@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 
 class Cuerpo extends StatelessWidget {
+  const Cuerpo({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,8 +37,8 @@ class Cuerpo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon, size: 50, color: Theme.of(context).primaryColor),
-            SizedBox(height: 10),
-            Text(title, style: TextStyle(fontSize: 16)),
+            const SizedBox(height: 10),
+            Text(title, style: const TextStyle(fontSize: 16)),
           ],
         ),
       ),
