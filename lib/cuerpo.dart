@@ -8,6 +8,7 @@ import 'momentos.dart';
 import 'perfil.dart';
 
 class Cuerpo extends StatelessWidget {
+  // constructor de la clase 
   const Cuerpo({super.key});
 
   @override
@@ -15,10 +16,12 @@ class Cuerpo extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: GridView.count(
-        crossAxisCount: 3,
-        crossAxisSpacing: 10,
-        shrinkWrap: true,
+        // Configura la cuadrícula de tarjetas
+        crossAxisCount: 3, // numero de columnas en la cuadricula
+        crossAxisSpacing: 10, // espacio entre columnas
+        shrinkWrap: true, // ajusta el tamaño 
         children: [
+          // construye una tarjeta para cada opcion
           buildCard('Mi Perfil', Icons.person, context),
           buildCard('Crear Partido', Icons.sports_soccer, context),
           buildCard('Mis Partidos', Icons.calendar_today, context),
@@ -30,14 +33,16 @@ class Cuerpo extends StatelessWidget {
     );
   }
 
+  // metodo para construir una tarjeta
   Widget buildCard(String title, IconData icon, BuildContext context) {
     return Card(
-      elevation: 4,
+      elevation: 4, 
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10), 
       ),
       child: InkWell(
         onTap: () {
+          // navega a la pagina correspondiente según el titulo de la tarjeta
           if (title == 'Mi Perfil') {
             Navigator.push(
               context,
@@ -71,10 +76,11 @@ class Cuerpo extends StatelessWidget {
           }
         },
         child: Column(
+          // organiza los widgets en una columna
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon, size: 50, color: Theme.of(context).primaryColor),
-            const SizedBox(height: 10),
+            const SizedBox(height: 10), // Espacio entre el icono y el texto
             Text(title, style: const TextStyle(fontSize: 16)),
           ],
         ),

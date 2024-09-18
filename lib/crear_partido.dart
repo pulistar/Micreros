@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
 
+
 class CrearPartido extends StatefulWidget {
+  // contructor de la clase 
   const CrearPartido({super.key});
 
   @override
   _CrearPartidoState createState() => _CrearPartidoState();
 }
 
+
 class _CrearPartidoState extends State<CrearPartido> {
+  // clave global para el formulario
   final _formKey = GlobalKey<FormState>();
 
+  // variables para los campos del formulario
   String _tipoPartido = 'Amistoso';
   String _genero = 'Masculino';
   DateTime _fechaPartido = DateTime.now();
   String _apuesta = '';
   String _comentario = '';
 
- 
+  // lista para almacenar los partidos creados
   final List<Map<String, dynamic>> _partidosCreados = [];
 
+  // metodo para seleccionar la fecha del partido
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -33,11 +39,12 @@ class _CrearPartidoState extends State<CrearPartido> {
     }
   }
 
+  // metodo para crear un partido
   void _crearPartido() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
-    
+      // crea un mapa con la información del nuevo partido
       Map<String, dynamic> nuevoPartido = {
         'tipo': _tipoPartido,
         'genero': _genero,
@@ -47,10 +54,11 @@ class _CrearPartidoState extends State<CrearPartido> {
       };
 
       setState(() {
+        // agrega el nuevo partido a la lista de partidos creados
         _partidosCreados.add(nuevoPartido);
       });
 
-    
+      // resetea el formulario y las variables
       _formKey.currentState!.reset();
       _tipoPartido = 'Amistoso';
       _genero = 'Masculino';
@@ -73,12 +81,13 @@ class _CrearPartidoState extends State<CrearPartido> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // formulario para crear un partido
               Form(
                 key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    
+                    // campo para seleccionar el tipo de partido
                     const Text('Tipo de Partido'),
                     DropdownButtonFormField<String>(
                       value: _tipoPartido,
@@ -98,7 +107,7 @@ class _CrearPartidoState extends State<CrearPartido> {
                     ),
                     const SizedBox(height: 16),
 
-                  
+                    // campo para seleccionar el género
                     const Text('Género'),
                     DropdownButtonFormField<String>(
                       value: _genero,
@@ -118,6 +127,7 @@ class _CrearPartidoState extends State<CrearPartido> {
                     ),
                     const SizedBox(height: 16),
 
+                    // campo para seleccionar la fecha del partido
                     const Text('Fecha del Partido'),
                     Row(
                       children: [
@@ -131,7 +141,7 @@ class _CrearPartidoState extends State<CrearPartido> {
                     ),
                     const SizedBox(height: 16),
 
-                
+                    // campo para ingresar la apuesta
                     TextFormField(
                       decoration: const InputDecoration(
                         labelText: 'Apuesta',
@@ -143,7 +153,7 @@ class _CrearPartidoState extends State<CrearPartido> {
                     ),
                     const SizedBox(height: 16),
 
-              
+                    // campo para ingresar un comentario
                     TextFormField(
                       decoration: const InputDecoration(
                         labelText: 'Comentario',
@@ -155,7 +165,7 @@ class _CrearPartidoState extends State<CrearPartido> {
                     ),
                     const SizedBox(height: 16),
 
-            
+                    // boton para crear el partido
                     Center(
                       child: ElevatedButton(
                         onPressed: _crearPartido,
@@ -167,6 +177,7 @@ class _CrearPartidoState extends State<CrearPartido> {
               ),
               const SizedBox(height: 20),
 
+              // muestra la lista de partidos creados si hay alguno
               if (_partidosCreados.isNotEmpty) ...[
                 const Text(
                   'Partidos Creados',

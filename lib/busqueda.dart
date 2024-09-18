@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Busqueda extends StatelessWidget {
+  //constructor de la clase
   const Busqueda({super.key});
 
   @override
@@ -9,6 +10,7 @@ class Busqueda extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Busqueda"),
       ),
+      //texto centrado 
       body: const Center(
         child: Text("Aquí va el contenido de búsqueda"),
       ),
